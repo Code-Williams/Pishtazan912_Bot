@@ -25,5 +25,5 @@ We need Python installed cause we built it just with Python. You can go to https
 If you are on windows, you can simply open `install.bat` file and it's automatically installing anything we want on your computer (If you get an error for packages, check error and install anything error says).\
 If you are on linux or mac you can copy this file and paste it on your terminal (You can do it by commands)(If you get error for `pip install` command, use `pip3 install` or `python -m pip install`).\
 
-### Running code
+## How to run code ?
 For run code you can use `python *.py` or `python3 *.py` command. Make sure to run correct file (simply it's main.py).\
