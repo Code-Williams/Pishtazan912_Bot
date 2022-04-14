@@ -1,4 +1,5 @@
 # Main bots project for Pishtazan912
+That's Pishtazan912's bots for whatsapp, it's simply send messages to whatsapp but bulk message.
 
 ## Why ?
 ### Why we built this project ?
