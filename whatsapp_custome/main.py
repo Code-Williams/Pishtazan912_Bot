@@ -5,8 +5,7 @@ numbers = []
 while True:
     req = input("Enter a number or 'done' to exit: ")
     if req.lower() != "done":
-        num = input("Enter a number: ")
-        numbers.append(num)
+        numbers.append(req)
     else:
         break
 
