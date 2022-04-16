@@ -6,7 +6,7 @@ counter = 0
 def log(number, message):
     log_date = datetime.datetime.now().strftime("%Y-%m-%d")
     log_time = datetime.datetime.now().strftime("%H:%M:%S")
-    log_file = open("log.txt", "a")
+    log_file = open(f"log-{log_date}.txt", "a")
     log_file.write("\n" + f"\nNumber : {number}\nDate : {log_date}\nTime : {log_time}\nMessage : {message}\n" + ("-" * 20))
     log_file.close()
 
