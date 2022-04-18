@@ -12,6 +12,7 @@ def log(number, message):
 
 def send_message(number, message, sleep_time, driver):
     driver.get(f"https://wa.me/{number}")
+    pyautogui.press("escape")
     find_continue_button = driver.find_element_by_xpath('//*[@id="action-button"]')
 
     if find_continue_button:
