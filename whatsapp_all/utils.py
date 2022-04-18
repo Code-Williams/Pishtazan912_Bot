@@ -19,7 +19,7 @@ def send_message(number, message, sleep_time, driver):
     pyautogui.press("enter")
     log(number, message)
     time.sleep(1)
-    
+
     # find_continue_button = driver.find_element_by_xpath('//*[@id="action-button"]')
     # if not is_number_not_found or not is_number_not_found.text == "Phone number shared via url is invalid.":
 
@@ -42,7 +42,7 @@ def send_message(number, message, sleep_time, driver):
 
 def read_excel_data(excel_file):
     file_e = pd.read_excel("excel.xlsx", index_col=None, header=None)
-    numbers = ["+98912312312334434"]
-    #for number in file_e.iterrows():
-    #    numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
+    numbers = []
+    for number in file_e.iterrows():
+        numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
     return numbers
