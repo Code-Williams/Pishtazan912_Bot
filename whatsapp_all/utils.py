@@ -18,7 +18,7 @@ def send_message(number, message, sleep_time, driver):
         find_continue_button.click()
 
     time.sleep(float(sleep_time))
-    
+
     while True:
         try:
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
@@ -34,7 +34,7 @@ def send_message(number, message, sleep_time, driver):
 
 def read_excel_data(excel_file):
     file_e = pd.read_excel("excel.xlsx", index_col=None, header=None)
-    numbers = ["+989121030892", "+989151502619"]
-    # for number in file_e.iterrows():
-        # numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
+    numbers = []
+    for number in file_e.iterrows():
+        numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
     return numbers
