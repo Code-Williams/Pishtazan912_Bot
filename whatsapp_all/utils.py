@@ -11,18 +11,12 @@ def log(number, message):
 
 
 def send_message(number, message, sleep_time, driver):
-    print(1)
     driver.get(f"https://wa.me/{number}")
-    print(2)
     find_continue_button = driver.find_element_by_xpath('//*[@id="action-button"]')
-    print(3)
 
-    # if find_continue_button:
     find_continue_button.click()
-    print(4)
 
     time.sleep(float(sleep_time))
-    print(5)
 
     while True:
         try:
@@ -39,7 +33,7 @@ def send_message(number, message, sleep_time, driver):
 
 def read_excel_data(excel_file):
     file_e = pd.read_excel("excel.xlsx", index_col=None, header=None)
-    numbers = []
-    for number in file_e.iterrows():
-        numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
+    numbers = ["+989121030892"]
+    #for number in file_e.iterrows():
+    #    numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
     return numbers
