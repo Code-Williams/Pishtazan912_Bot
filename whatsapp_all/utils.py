@@ -11,15 +11,18 @@ def log(number, message):
 
 
 def send_message(number, message, sleep_time, driver):
+    print(1)
     driver.get(f"https://wa.me/{number}")
-    print("getting driver")
+    print(2)
     find_continue_button = driver.find_element_by_xpath('//*[@id="action-button"]')
-    print("button getted")
+    print(3)
 
     # if find_continue_button:
     find_continue_button.click()
+    print(4)
 
     time.sleep(float(sleep_time))
+    print(5)
 
     while True:
         try:
