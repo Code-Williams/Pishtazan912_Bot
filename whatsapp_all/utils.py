@@ -28,7 +28,7 @@ def send_message(number, message, sleep_time, driver):
         except Exception as e:
             time.sleep(3)
 
-    time.sleep(1)
+    time.sleep(0.5)
     driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
 
 
