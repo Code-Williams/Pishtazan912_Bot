@@ -25,6 +25,7 @@ def send_message(number, message, sleep_time, driver):
     time.sleep(float(sleep_time))
 
     loop_count = 0
+    is_message_sent = True
     while True:
         try:
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
@@ -36,12 +37,14 @@ def send_message(number, message, sleep_time, driver):
             loop_count += 1
             if loop_count >= 3:
                 print(f"Number [ {number} ] is not defined.")
+                is_message_sent = False
                 break
             time.sleep(3)
 
-    time.sleep(0.3)
-    driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
-    time.sleep(1)
+    if is_message_sent:
+        time.sleep(0.3)
+        driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
+        time.sleep(1)
 
 
 def read_excel_data(excel_file):
