@@ -1,9 +1,14 @@
-import utils
+import utils, sys
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 
 time = input("Enter time [Seconds]: ")
+
+if time == "about":
+    print("Developer : Shayan Nasrabadi [Wil1i]\nGitHub : https://github.com/Code-Williams")
+    sys.exit()
+
 file_name = input("Enter file name : ")
 numbers = utils.read_excel_data(file_name)
 
