@@ -38,8 +38,8 @@ def send_message(number, message, sleep_time, driver):
 
 
 def read_excel_data(excel_file):
-    file_e = pd.read_excel("excel.xlsx", index_col=None, header=None)
-    numbers = ["+989121030892"]
-    # for number in file_e.iterrows():
-        # numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
+    file_e = pd.read_excel(excel_file, index_col=None, header=None)
+    numbers = []
+    for number in file_e.iterrows():
+        numbers.append("+98" + str(number[1].tolist()).replace("[","").replace("]",""))
     return numbers
