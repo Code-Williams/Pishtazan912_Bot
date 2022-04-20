@@ -13,15 +13,6 @@ def log(number, message):
 def send_message(number, message, sleep_time, driver):
     driver.get(f"https://web.whatsapp.com/send?phone={number}&source=&data=#")
 
-    # is_number_not_found = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
-    # if not is_number_not_found or not is_number_not_found.text == "Phone number shared via url is invalid.":
-
-    # time.sleep(sleep_time)
-    # pyautogui.send_keys(message)
-    # pyautogui.press("enter")
-    # log(number, message)
-    # time.sleep(1)
-
     time.sleep(float(sleep_time))
 
     loop_count = 0
