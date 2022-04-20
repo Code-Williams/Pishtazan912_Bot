@@ -4,19 +4,19 @@ num = input("Pish shomare ra vared konid : ")
 nums = []
 
 if num.startswith("09"):
-   num = num.replace("09", "+989") 
+   num = num.replace("09", "9") 
 
-if num.startswith("9"):
-    "+98" + num
+if num.startswith("+98"):
+    num = num.replace("+98", "")
 
 if num.startswith("0098"):
-    num = num.replace("0098", "+98")
+    num = num.replace("0098", "")
 
-lenghts = 12 - len(num)
+lenghts = 10 - len(num)
 nums_for_loop = ""
 
-if lenghts >= 1:
-   nums_for_loop = "9" * lenghts
+if (lenghts - 1) >= 1:
+   nums_for_loop = "9" * (lenghts - 1)
 
 for numLoop in range(0, int("9" + nums_for_loop) + 1):
         lenghts_for_0 = len(nums_for_loop) - len(str(numLoop))
