@@ -11,6 +11,7 @@ def log(number, message):
 
 
 def send_message(number, message, sleep_time, driver):
+    trying_send = 0
     while True:
         try:
             driver.get(f"https://web.whatsapp.com/send?phone={number}&source=&data=#")
@@ -40,7 +41,10 @@ def send_message(number, message, sleep_time, driver):
                 time.sleep(1.5)
             break
         except:
-            print("[ERROR] Message not sent, wait for 1 minute")
+            trying_send += 1
+            if trying_send == 10:
+                print("[ERROR] Can't send message to this number after 10 try, skipping this number.")
+            print("[ERROR] Message not send, wait for 1 minute")
             time.sleep(60)
 
 def read_excel_data(excel_file):
