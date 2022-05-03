@@ -44,6 +44,7 @@ def send_message(number, message, sleep_time, driver):
             trying_send += 1
             if trying_send == 10:
                 print("[ERROR] Can't send message to this number after 10 try, skipping this number.")
+                break
             print("[ERROR] Message not send, wait for 1 minute")
             time.sleep(60)
 
