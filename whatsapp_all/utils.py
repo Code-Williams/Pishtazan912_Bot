@@ -39,13 +39,16 @@ def send_message(number, message, sleep_time, driver):
                 time.sleep(0.2)
                 driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
                 time.sleep(1.5)
+                return True
             break
         except:
             trying_send += 1
             if trying_send == 10:
                 print(f"[ERROR] Can't send message to [ {number} ] after 10 try, skipping this number.")
+                return False
                 break
             print("[ERROR] Message not send, wait for 1 minute")
+            return False
             time.sleep(60)
 
 def read_excel_data(excel_file):
