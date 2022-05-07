@@ -11,7 +11,7 @@ driver.get("https://web.whatsapp.com")
 @app.route("/api/v1/messages/send", methods=['POST'])
 def send_message():
     data = request.form
-    
+
     if not data['number'] or not data['message'] or not data['sleep_time']:
         return "Please provide all the required fields.\n\[Number, Message, Sleep_Time]"
 
