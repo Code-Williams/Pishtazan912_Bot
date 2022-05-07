@@ -3,3 +3,4 @@
 */geckodriver.log
 */log.txt
 .DS_Store
+*/node_modules
