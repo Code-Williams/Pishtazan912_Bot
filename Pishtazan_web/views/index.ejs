@@ -72,7 +72,9 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">All messages</span>
-                    <span class="info-box-number"> 1,500 </span>
+                    <span class="info-box-number">
+                      <%= messages.length %>
+                    </span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -87,7 +89,10 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Sent messasges</span>
-                    <span class="info-box-number">1,000</span>
+                    <span class="info-box-number"
+                      ><%= messages.filter(msg => msg.stats == "sent").length
+                      %></span
+                    >
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -106,7 +111,10 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Skipped numbers</span>
-                    <span class="info-box-number">500</span>
+                    <span class="info-box-number"
+                      ><%= messages.filter(msg => msg.stats == "skipped").length
+                      %></span
+                    >
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -121,7 +129,10 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Pending messages</span>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-number"
+                      ><%= messages.filter(msg => msg.stats == "pending").length
+                      %></span
+                    >
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -199,11 +210,14 @@
 
                         <div class="progress-group">
                           Sent messages
-                          <span class="float-right"><b>160</b>/200</span>
+                          <span class="float-right"
+                            ><b><%= messages.filter(msg => msg.stats == "sent").length %></b>/<%= goals.find(goal => goal.name ==
+                            "sent messages").goal %></span
+                          >
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-primary"
-                              style="width: 80%"
+                              style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) * parseInt(goals.find(goal => goal.name == "sent messages").goal) / 100%>%"
                             ></div>
                           </div>
                         </div>
@@ -211,11 +225,11 @@
 
                         <div class="progress-group">
                           All messages
-                          <span class="float-right"><b>310</b>/400</span>
+                          <span class="float-right"><b><%= messages.filter(msg => msg.stats == "all").length %></b>/<%= goals.find(goal => goal.name == "all messages").goal %></span>
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-danger"
-                              style="width: 75%"
+                              style="width: <%= messages.filter(msg => msg.stats == "all").length * goals.find(goal => goal.name == "all messages").goal / 100%>%"
                             ></div>
                           </div>
                         </div>
