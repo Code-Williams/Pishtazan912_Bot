@@ -1,0 +1,30 @@
+const { DataTypes } = require("sequelize");
+const db = require("../configs/db");
+
+const Message = db.define(
+  "messages",
+  {
+    id: {
+      type: DataTypes.NUMBER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+
+    number: {
+      type: DataTypes.STRING,
+    },
+
+    message: {
+      type: DataTypes.STRING,
+    },
+
+    stats: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+module.exports = Message;
