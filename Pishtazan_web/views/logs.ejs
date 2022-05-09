@@ -91,7 +91,7 @@
                                 <td><%= message.id %></td>
                                 <td><%= message.number %></td>
                                 <td><%= message.stats %></td>
-                                <td><%= message.message %></td>
+                                <td><%= message.message.substr(0, 50) %><%= (message.message.length > 30) ? '...' : '' %></td>
 
                             </tr>
 
