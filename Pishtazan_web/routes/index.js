@@ -10,6 +10,9 @@ Router.get("/messages/log", messageController.get);
 const sendMessageController = require("../controller/msgSendController")
 Router.get("/messages/send", sendMessageController.get);
 
+const oneMessageController = require("../controller/msgOneController")
+Router.get("/messages/:id", oneMessageController.get);
+
 // const messagesRouter = require("./messagesRoute");
 // Router.use("/messages/log" , messagesRouter);
 
