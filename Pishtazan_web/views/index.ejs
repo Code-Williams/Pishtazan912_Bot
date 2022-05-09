@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("./templates/header.ejs") %>
+    <%- include("./templates/header.ejs", {name : "Dashboard"}) %>
   </head>
   <body
     class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"
@@ -217,7 +217,7 @@
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-primary"
-                              style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) * parseInt(goals.find(goal => goal.name == "sent messages").goal) / 100%>%"
+                              style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
                             ></div>
                           </div>
                         </div>
@@ -229,7 +229,7 @@
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-danger"
-                              style="width: <%= messages.filter(msg => msg.stats == "all").length * goals.find(goal => goal.name == "all messages").goal / 100%>%"
+                              style="width: <%= messages.filter(msg => msg.stats == "all").length / goals.find(goal => goal.name == "all messages").goal * 100%>%"
                             ></div>
                           </div>
                         </div>
@@ -301,7 +301,9 @@
                         </thead>
                         <tbody>
 
-                          <% messages.forEach(message => { %>
+                          <% for(let i=0; i <= 5; i++){ %>
+                            <% const message = messages[i] %>
+                            <% if(!message) break %>
 
                             <tr>
                               <td>
@@ -310,13 +312,13 @@
                               <td><%= message.number %></td>
                               <td>
                                 <% if(message.stats == "sent"){ %>
-                                    <span class="badge badge-success">sent</span>
+                                    <span class="badge badge-success">Sent</span>
                                 <% }else if(message.stats == "pending"){ %>
-                                    <span class="badge badge-warning">pending</span>
+                                    <span class="badge badge-warning">Pending</span>
                                 <% }else if(message.stats == "skipped"){ %>
-                                    <span class="badge badge-danger">skipped</span>
+                                    <span class="badge badge-danger">Skipped</span>
                                 <% }else{ %>
-                                    <span class="badge badge-danger">none</span>
+                                    <span class="badge badge-danger">None</span>
                                 <% } %>
                               </td>
                               <td>
@@ -330,7 +332,7 @@
                               </td>
                             </tr>
 
-                          <% }) %>
+                          <% } %>
 
                         </tbody>
                       </table>
