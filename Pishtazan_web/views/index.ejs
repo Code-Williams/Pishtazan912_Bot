@@ -217,7 +217,11 @@
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-primary"
-                              style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
+                              <% if(messages.filter(msg => msg.stats == "sent").length > goals.find(goal => goal.name == "sent messages").goal){ %>
+                                style="width: 100%;"
+                              <% }else{ %>
+                                style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
+                              <% } %>
                             ></div>
                           </div>
                         </div>
@@ -225,11 +229,15 @@
 
                         <div class="progress-group">
                           All messages
-                          <span class="float-right"><b><%= messages.filter(msg => msg.stats == "all").length %></b>/<%= goals.find(goal => goal.name == "all messages").goal %></span>
+                          <span class="float-right"><b><%= messages.length %></b>/<%= goals.find(goal => goal.name == "all messages").goal %></span>
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-danger"
-                              style="width: <%= messages.filter(msg => msg.stats == "all").length / goals.find(goal => goal.name == "all messages").goal * 100%>%"
+                              <% if(messages.length > goals.find(goal => goal.name == "all messages").goal){ %>
+                                style="width: 100%;"
+                              <% }else{ %>
+                                style="width: <%= messages.length / goals.find(goal => goal.name == "all messages").goal * 100%>%"
+                              <% } %>
                             ></div>
                           </div>
                         </div>
