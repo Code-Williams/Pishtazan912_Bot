@@ -69,30 +69,22 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form method="post" action="/messages/send" enctype="multipart/form-data">
                   <div class="card-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Message</label>
-                      <textarea type="email" required class="form-control" id="exampleInputEmail1" placeholder="متن را وارد کنید." style="text-align: right; direction: rtl;"> </textarea>
+                      <textarea name="message" type="email" required class="form-control" id="exampleInputEmail1" placeholder="متن را وارد کنید." style="text-align: right; direction: rtl;"> </textarea>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Options</label>
-                        <div style="width: 100%;">
-                            <input type="number" min="1" max="60" class="form-control" id="exampleInputPassword1" placeholder="Sleep Time (by second)" style="width: 20%; float: left;">
-                            <input type="number" min="1" max="10" class="form-control" id="exampleInputPassword1" placeholder="Try for send" style="width: 20%; float: left; margin-left: 10px;">
-                        </div>
+                      <input name="password" type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputFile" style="width: 100%; margin-top: 10px;">File input</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
+                          <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <!-- <div class="input-group-append">
