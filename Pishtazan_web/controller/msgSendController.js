@@ -3,7 +3,8 @@ const xlsx = require("node-xlsx")
 const fs = require("fs")
 
 const get = (req, res) => {
-    res.render("sendMessage");
+    req.flash("success", "Messages 10293 added to pending page")
+    res.render("sendMessage", {flash : req.flash()});
 }
 
 const post = async (req, res) => {
