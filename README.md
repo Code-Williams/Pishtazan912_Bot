@@ -28,3 +28,12 @@ If you are on linux or mac you can copy this file and paste it on your terminal 
 
 ## How to run code ?
 For run code you can use `python *.py` or `python3 *.py` command. Make sure to run correct file (simply it's main.py).
+
+### For web version
+For ruinning web version in windows you can do this :\
+```
+set FLASK_APP=web
+set FLASK_ENV=development
+flask run
+```
+this will run in development mode.\
