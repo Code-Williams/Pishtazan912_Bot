@@ -7,6 +7,7 @@ const get = (req, res) => {
 }
 
 const post = async (req, res) => {
+    console.log("post")
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
@@ -24,8 +25,6 @@ const post = async (req, res) => {
             }
 
         }
-
-        fs.unlink(`../public/uploads/${req.file.filename}`)
         
         res.redirect("/messages/send")
         return
