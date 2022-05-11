@@ -2,8 +2,10 @@ const Message = require("../models/Message")
 const xlsx = require("node-xlsx")
 const fs = require("fs")
 
-const get = (req, res) => {
-    res.render("sendMessage", {flash : req.flash()});
+const get = async (req, res) => {
+    const messages = await Message.findAll();
+
+    res.render("sendMessage", {flash : req.flash(), messages});
 }
 
 const post = async (req, res) => {
@@ -24,12 +26,16 @@ const post = async (req, res) => {
                 }
             }
 
+            req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
+        }else{
+            req.flash("danger", "Password is incorrect")
         }
         
         res.redirect("/messages/send")
         return
     }
 
+    req.flash("danger", "File not found")
     res.redirect("/messages/send")
 }
 

@@ -90,7 +90,7 @@ $(function () {
     datasets: [
       {
         data: [parseInt(document.getElementById("sent-messages").textContent), parseInt(document.getElementById("pending").textContent), parseInt(document.getElementById("skipped").textContent)],
-        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de']
+        backgroundColor: ['#00a65a', '#f39c12', '#f56954']
       }
     ]
   }
