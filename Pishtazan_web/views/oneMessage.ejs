@@ -80,14 +80,14 @@
                 <h1><b>Number</b> : <%= message.number %></h1>
 
                 <% if(message.stats == "sent"){ %>
-                    <p style="text-align: right; direction: rtl;" class="badge badge-success">وضعیت : <%= message.stats %></p>
+                    <p style="text-align: right; direction: rtl;" class="badge badge-success persian">وضعیت : <%= message.stats %></p>
                 <% }else if(message.stats == "pending"){ %>
-                    <p style="text-align: right; direction: rtl;" class="badge badge-warning">وضعیت : <%= message.stats %></p>
+                    <p style="text-align: right; direction: rtl;" class="badge badge-warning persian">وضعیت : <%= message.stats %></p>
                 <% }else if(message.stats == "skipped"){ %>
-                    <p style="text-align: right; direction: rtl;" class="badge badge-danger">وضعیت : <%= message.stats %></p>
+                    <p style="text-align: right; direction: rtl;" class="badge badge-danger persian">وضعیت : <%= message.stats %></p>
                 <% } %>
-                <p style="border-top: 1px solid rgba(0,0,0,.05); text-align: right; direction: rtl;"><b>متن پیام :</b></p>
-                <p style="direction: rtl; text-align: right;"><%= message.message %></p>
+                <p style="border-top: 1px solid rgba(0,0,0,.05); text-align: right; direction: rtl;" class="persian"><b>متن پیام :</b></p>
+                <p style="direction: rtl; text-align: right;" class="persian"><%= message.message %></p>
 
               </div>
               <!-- /.card-body -->
