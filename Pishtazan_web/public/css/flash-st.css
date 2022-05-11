@@ -1,0 +1,7 @@
+.flash{
+    background-color: rgba(0, 255, 0, 0.15);
+    padding: 5px 10px;
+    border-radius: 10px;
+    float: right;
+    border: 1px solid rgba(0, 255, 0, 0.25);
+}
