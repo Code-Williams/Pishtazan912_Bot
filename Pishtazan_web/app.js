@@ -9,10 +9,13 @@ const PORT = 3000;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(flash())
+app.use(session({ secret : "pishtazan912 website" }))
+app.use(cookieParser())
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
-app.set("view engine", "ejs");
+app.set("view engine", "ejs")
 
 // GET requests handlers
 const routes = require("./routes");
