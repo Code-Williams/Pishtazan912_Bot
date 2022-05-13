@@ -40,7 +40,7 @@ this will run in development mode.\
 
 ## TODO
 * [X] Add date for logging
-* [ ] Can delete numbers from pending list
+* [X] Can delete numbers from pending list
 * [ ] Can create number range from website
 * [ ] Spam option
 * [ ] Setting for sleep time and try time

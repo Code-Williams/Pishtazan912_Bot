@@ -15,6 +15,9 @@ Router.post("/messages/send", upload.single("file"), sendMessageController.post)
 const oneMessageController = require("../controller/msgOneController")
 Router.get("/messages/:id", oneMessageController.get);
 
+const deleteMessageController = require("../controller/msgDeleteController")
+Router.post("/messages/:id/delete", deleteMessageController.post)
+
 // const messagesRouter = require("./messagesRoute");
 // Router.use("/messages/log" , messagesRouter);
 

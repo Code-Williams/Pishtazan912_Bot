@@ -70,6 +70,13 @@
             <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Messages Log</h3>
+                  <% for(const key in flash){ %>
+                          
+                    <span role="alert" class="flash float-right">
+                      <%= flash[key] %>
+                    </span>
+        
+                  <% } %>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -90,7 +97,7 @@
                             <tr>
 
                                 <td><a href="/messages/<%= message.id %>"><%= message.id %></a></td>
-                                
+
                                 <% if(message.activity_time){ %>
                                   <td><%= message.activity_time %></td>
                                 <% }else{ %>
