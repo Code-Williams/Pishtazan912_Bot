@@ -20,6 +20,9 @@ const post = async (req, res) => {
             }
 
             var numbers = await xlsx.parse(dir + req.file.filename);
+
+            let date = new Date();
+            date = `${date.getFullYear}/${date.getMonth()}/${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             
             for(const i of numbers[0].data){
                 if (i[0].length >= 10 && i[0].length <= 13) {
@@ -29,7 +32,8 @@ const post = async (req, res) => {
                     await Message.create({
                         number: i[0],
                         message: req.body.message,
-                        stats: "pending"
+                        stats: "pending",
+                        activity_time : date
                     })
                 }
             }

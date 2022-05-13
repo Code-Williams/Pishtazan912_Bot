@@ -39,7 +39,7 @@ flask run
 this will run in development mode.\
 
 ## TODO
-* [ ] Add date for logging
+* [X] Add date for logging
 * [ ] Can delete numbers from pending list
 * [ ] Can create number range from website
 * [ ] Spam option

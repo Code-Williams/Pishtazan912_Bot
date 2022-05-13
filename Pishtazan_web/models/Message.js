@@ -21,6 +21,10 @@ const Message = db.define(
     stats: {
       type: DataTypes.STRING,
     },
+
+    activity_time: {
+      type : DataTypes.TEXT
+    }
   },
   {
     timestamps: false,
