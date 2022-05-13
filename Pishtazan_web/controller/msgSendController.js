@@ -27,7 +27,7 @@ const post = async (req, res) => {
             var numbers = await xlsx.parse(dir + req.file.filename);
 
             let date = new Date();
-            date = `${date.getFullYear}/${date.getMonth()}/${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+            date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             
             for(const i of numbers[0].data){
                 if (i[0].length >= 10 && i[0].length <= 13) {
