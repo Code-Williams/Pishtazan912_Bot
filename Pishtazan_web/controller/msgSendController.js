@@ -13,7 +13,7 @@ const post = async (req, res) => {
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 const dir = __dirname.replace("/controller", "") + "/public/uploads/"
                 var numbers = await xlsx.parse(dir + req.file.filename);
                 
