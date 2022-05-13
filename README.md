@@ -37,3 +37,15 @@ set FLASK_ENV=development
 flask run
 ```
 this will run in development mode.\
+
+## TODO
+* [ ] Add date for logging
+* [ ] Can delete numbers from pending list
+* [ ] Can create number range from website
+* [ ] Spam option
+* [ ] Setting for sleep time and try time
+* [ ] Default value for sleep time and try time
+* [ ] Can create .txt file for when creating number range
+* [ ] Can accept .txt file for sending message
+* [ ] Can send one message manually
+* [ ] Can enter a number range and send message to all of them
