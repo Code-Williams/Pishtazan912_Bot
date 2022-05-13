@@ -28,9 +28,9 @@ def check_db():
     res = cursor.fetchall()
 
     for x in res:
-        id, number, message, stats = x
+        id, number, message, stats, activity_time = x
         message_sent = utils.send_message(number, message, "2", driver)
-
+        print(message_sent)
         if message_sent:
             cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
             mydb.commit()

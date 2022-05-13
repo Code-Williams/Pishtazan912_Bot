@@ -47,9 +47,9 @@ def send_message(number, message, sleep_time, driver):
                 print(f"[ERROR] Can't send message to [ {number} ] after 10 try, skipping this number.")
                 return False
                 break
-            print("[ERROR] Message not send, wait for 1 minute")
+            print("[ERROR] Message not send, wait for 30 secs")
             return False
-            time.sleep(60)
+            time.sleep(30)
 
 def read_excel_data(excel_file):
     file_e = pd.read_excel(excel_file, index_col=None, header=None)
