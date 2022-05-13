@@ -26,9 +26,10 @@ const post = async (req, res) => {
                         })
                     }
                 }
+                
+                req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
             }, 3000);
 
-            req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
         }else{
             req.flash("danger", "Password is incorrect")
         }
