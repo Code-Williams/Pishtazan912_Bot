@@ -23,6 +23,9 @@ const post = async (req, res) => {
             
             for(const i of numbers[0].data){
                 if (i[0].length >= 10 && i[0].length <= 13) {
+                    if(i[0].startsWith("9")) i[0] = "+98" + i[0];
+                    if(i[0].startsWith("0")) i[0] = "+98" + i[0].substring(1);
+
                     await Message.create({
                         number: i[0],
                         message: req.body.message,
