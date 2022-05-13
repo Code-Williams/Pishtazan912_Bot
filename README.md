@@ -44,7 +44,7 @@ this will run in development mode.\
 * [ ] Can create number range from website
 * [ ] Spam option
 * [ ] Setting for sleep time and try time
-* [ ] Default value for sleep time and try time
+* [X] Default value for sleep time and try time
 * [ ] Can create .txt file for when creating number range
 * [ ] Can accept .txt file for sending message
 * [ ] Can send one message manually

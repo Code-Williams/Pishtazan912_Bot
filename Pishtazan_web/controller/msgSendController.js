@@ -1,14 +1,19 @@
 const Message = require("../models/Message")
+const Setting = require("../models/Settings")
 const xlsx = require("node-xlsx")
 
 const get = async (req, res) => {
     const messages = await Message.findAll();
+    const defMessage = await Setting.findOne({
+        where : {
+            name : "message"
+        }
+    }) || ""
 
-    res.render("sendMessage", {flash : req.flash(), messages});
+    res.render("sendMessage", {flash : req.flash(), messages, defMessage});
 }
 
 const post = async (req, res) => {
-    console.log("post")
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
