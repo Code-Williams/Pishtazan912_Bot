@@ -1,6 +1,5 @@
 const Message = require("../models/Message")
 const xlsx = require("node-xlsx")
-const fs = require("fs")
 
 const get = async (req, res) => {
     const messages = await Message.findAll();
@@ -13,7 +12,13 @@ const post = async (req, res) => {
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
-            const dir = __dirname.replace("\\controller", "") + "\\public\\uploads\\"
+            let dir;
+            try {
+                dir = __dirname.replace("\\controller", "") + "\\public\\uploads\\"
+            } catch (error) {
+                dir = __dirname.replace("/controller", "") + "/public/uploads/"
+            }
+
             var numbers = await xlsx.parse(dir + req.file.filename);
             
             for(const i of numbers[0].data){
