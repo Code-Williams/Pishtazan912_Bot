@@ -13,18 +13,20 @@ const post = async (req, res) => {
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
-            const dir = __dirname.replace("/controller", "") + "/public/uploads/"
-            var numbers = await xlsx.parse(dir + req.file.filename);
-            
-            for(const i of numbers[0].data){
-                if (i[0].length >= 10 && i[0].length <= 13) {
-                    await Message.create({
-                        number: i[0],
-                        message: req.body.message,
-                        stats: "pending"
-                    })
+            setTimeout(() => {
+                const dir = __dirname.replace("/controller", "") + "/public/uploads/"
+                var numbers = await xlsx.parse(dir + req.file.filename);
+                
+                for(const i of numbers[0].data){
+                    if (i[0].length >= 10 && i[0].length <= 13) {
+                        await Message.create({
+                            number: i[0],
+                            message: req.body.message,
+                            stats: "pending"
+                        })
+                    }
                 }
-            }
+            }, 3000);
 
             req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
         }else{
