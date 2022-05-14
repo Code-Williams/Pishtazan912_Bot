@@ -1,6 +1,7 @@
 const Message = require("../models/Message")
 const numGenerator = require("../helpers/numRange")
 const Setting = require("../models/Settings")
+const fs = require("fs")
 const xlsx = require("node-xlsx")
 
 const get = async (req, res) => {
@@ -24,27 +25,55 @@ const post = async (req, res) => {
             let dir;
             try {
                 dir = __dirname.replace("\\controller", "") + "\\public\\uploads\\"
+                fs.readdirSync(dir)
             } catch (error) {
                 dir = __dirname.replace("/controller", "") + "/public/uploads/"
+                fs.readdirSync(dir)
             }
 
-            var numbers = await xlsx.parse(dir + req.file.filename);
-            
-            for(const i of numbers[0].data){
-                if (i[0].length >= 10 && i[0].length <= 13) {
-                    if(i[0].startsWith("9")) i[0] = "+98" + i[0];
-                    if(i[0].startsWith("0")) i[0] = "+98" + i[0].substring(1);
+            if(req.file.filename.endsWith(".xlsx")){
 
-                    await Message.create({
-                        number: i[0],
-                        message: req.body.message,
-                        stats: "pending",
-                        activity_time : date
-                    })
+                var numbers = await xlsx.parse(dir + req.file.filename);
+                
+                for(const i of numbers[0].data){
+                    if (i[0].length >= 10 && i[0].length <= 13) {
+                        if(i[0].startsWith("9")) i[0] = "+98" + i[0];
+                        if(i[0].startsWith("0")) i[0] = "+98" + i[0].substring(1);
+
+                        await Message.create({
+                            number: i[0],
+                            message: req.body.message,
+                            stats: "pending",
+                            activity_time : date
+                        })
+                    }
                 }
-            }
 
-            req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
+                req.flash("success", `Successfully inserted ${numbers[0].data.length} numbers into pending list`)
+
+            }else if(req.file.filename.endsWith(".txt")){
+
+                const numbers = fs.readFileSync(dir + req.file.filename, {encoding : "utf-8"}).split("\n")
+
+                numbers.forEach(async number => {
+
+                    if (number.length >= 10 && number.length <= 13) {
+                        if(number.startsWith("9")) number = "+98" + number;
+                        if(number.startsWith("0")) number = "+98" + number.substring(1);
+
+                        await Message.create({
+                            number: number,
+                            message: req.body.message,
+                            stats: "pending",
+                            activity_time : date
+                        })
+                    }
+                    
+                })
+
+                req.flash("success", `Successfully inserted ${numbers.length} numbers into pending list`)
+
+            }
 
         }else{
             req.flash("danger", "Password is incorrect")
