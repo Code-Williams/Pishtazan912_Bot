@@ -1,4 +1,5 @@
 const Message = require("../models/Message")
+const numGenerator = require("../helpers/numRange")
 const Setting = require("../models/Settings")
 const xlsx = require("node-xlsx")
 
@@ -14,6 +15,9 @@ const get = async (req, res) => {
 }
 
 const post = async (req, res) => {
+    let date = new Date();
+    date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
     if(req.file && req.file.filename){
         if(req.body.password && req.body.password == "pishtazan912"){
 
@@ -25,9 +29,6 @@ const post = async (req, res) => {
             }
 
             var numbers = await xlsx.parse(dir + req.file.filename);
-
-            let date = new Date();
-            date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             
             for(const i of numbers[0].data){
                 if (i[0].length >= 10 && i[0].length <= 13) {
@@ -49,6 +50,20 @@ const post = async (req, res) => {
             req.flash("danger", "Password is incorrect")
         }
         
+        res.redirect("/messages/send")
+        return
+    }else if(req.body.range){
+        const numbers = numGenerator.generate(req.body.range)
+        numbers.forEach(async number => {
+            await Message.create({
+                number,
+                message : req.body.message,
+                stats : "pending",
+                activity_time : date
+            })
+        })
+
+        req.flash("success", `Successfully inserted ${numbers.length} numbers into pending list`)
         res.redirect("/messages/send")
         return
     }
