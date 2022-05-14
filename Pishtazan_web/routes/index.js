@@ -21,6 +21,10 @@ Router.post("/messages/:id/delete", deleteMessageController.post)
 const sendOneMessageController = require("../controller/msgSendOneController")
 Router.get("/messages/send/one", sendOneMessageController.get);
 Router.post("/messages/send/one", sendOneMessageController.post);
+
+const generateRangeController = require("../controller/generateRangeController")
+Router.get("/range", generateRangeController.get);
+Router.post("/range", generateRangeController.post);
 // const messagesRouter = require("./messagesRoute");
 // Router.use("/messages/log" , messagesRouter);
 
