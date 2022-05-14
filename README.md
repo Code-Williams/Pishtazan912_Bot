@@ -41,11 +41,11 @@ this will run in development mode.\
 ## TODO
 * [X] Add date for logging
 * [X] Can delete numbers from pending list
-* [ ] Can create number range from website
+* [X] Can create number range from website
 * [ ] Spam option
 * [ ] Setting for sleep time and try time
 * [X] Default value for sleep time and try time
-* [ ] Can create .txt file for when creating number range
+* [X] Can create .txt file for when creating number range
 * [ ] Can accept .txt file for sending message
-* [ ] Can send one message manually
-* [ ] Can enter a number range and send message to all of them
+* [X] Can send one message manually
+* [X] Can enter a number range and send message to all of them
