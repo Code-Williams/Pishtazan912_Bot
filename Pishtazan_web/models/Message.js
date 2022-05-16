@@ -23,7 +23,7 @@ const Message = db.define(
     },
 
     activity_time: {
-      type : DataTypes.TEXT
+      type : DataTypes.STRING
     }
   },
   {
