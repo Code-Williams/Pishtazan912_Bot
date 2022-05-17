@@ -25,6 +25,10 @@ Router.post("/messages/send/one", sendOneMessageController.post);
 const generateRangeController = require("../controller/generateRangeController")
 Router.get("/range", generateRangeController.get);
 Router.post("/range", generateRangeController.post);
+
+const settingsController = require("../controller/settingsController")
+Router.get("/settings", settingsController.get)
+Router.post("/settings", settingsController.post)
 // const messagesRouter = require("./messagesRoute");
 // Router.use("/messages/log" , messagesRouter);
 
