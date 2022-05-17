@@ -6,7 +6,7 @@ const get = async (req, res) => {
 }
 
 const post = async (req, res) => {
-    if(req.body.pendings){
+    if(req.body['pendings'] == ''){
         const messages = await Messages.findAll({
             where : {
                 stats : "pending"
@@ -18,7 +18,7 @@ const post = async (req, res) => {
         })
         
         req.flash("success", "Successfully deleted all pendings")
-    }else if(req.body.all){
+    }else if(req.body['all'] == ''){
         const messages = await Messages.findAll()
         
         messages.forEach(async message => {
