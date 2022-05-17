@@ -4,6 +4,7 @@ const Router = new express.Router()
 
 const messageController = require("../controller/msgLogController")
 Router.get("/log", messageController.get);
+Router.post("/log/deleteP", messageController.post)
 
 const sendMessageController = require("../controller/msgSendController")
 Router.get("/send", sendMessageController.get);
