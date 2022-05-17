@@ -7,7 +7,9 @@ const get = async (req, res) => {
 }
 
 const post = async (req, res) => {
-    if(req.body.sleepTime !== ""){
+    const settings = await Setting.findAll()
+
+    if(req.body.sleepTime !== settings.find(s => s.name == "sleep time").value){
         const findSleepTime = await Setting.findOne({
             where : {
                 name : "sleep time"
@@ -17,7 +19,9 @@ const post = async (req, res) => {
         await findSleepTime.update({
             value : req.body.sleepTime
         })
-    }else if(req.body.tryTime !== ""){
+    }
+
+    if(req.body.tryTime !== settings.find(s => s.name == "try time").value){
         const findTryTime = await Setting.findOne({
             where : {
                 name : "try time"
@@ -27,7 +31,9 @@ const post = async (req, res) => {
         await findTryTime.update({
             value : req.body.tryTime
         })
-    }else if(req.body.message !== ""){
+    }
+
+    if(req.body.message !== settings.find(s => s.name == "message").value){
         const findMessage = await Setting.findOne({
             where :{
                 name : "message"
