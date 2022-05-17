@@ -1,13 +1,13 @@
-import utils, sys, mysql.connector, time
+import utils, sys, mysql.connector, time, config
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 
 mydb = mysql.connector.connect(
     host = "localhost",
-    user = "root",
-    password = "shayanwilliams",
-    database = "pishtazan"
+    user = config.user,
+    password = config.password,
+    database = config.database
 )
 
 cursor = mydb.cursor()
