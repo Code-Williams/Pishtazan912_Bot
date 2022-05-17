@@ -10,7 +10,7 @@ const post = async (req, res) => {
     if(req.body.sleepTime !== ""){
         const findSleepTime = await Setting.findOne({
             where : {
-                name : "sleepTime"
+                name : "sleep time"
             }
         })
 
