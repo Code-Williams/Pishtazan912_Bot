@@ -31,7 +31,7 @@ def check_db():
         cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
         sleepTime = cursor.fetchall()[0][2]
 
-        if not res[0]:
+        if not res:
             break
 
         for x in res:
