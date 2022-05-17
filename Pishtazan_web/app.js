@@ -4,8 +4,8 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const config = require("./config.json")
 
-const PORT = 3000;
 const app = express();
 
 app.use(bodyParser.json());
@@ -17,6 +17,9 @@ app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs")
 
+const msgsRoutes = require("./routes/messages")
+app.use("/messages", msgsRoutes);
+
 // GET requests handlers
 const routes = require("./routes");
 app.use("/", routes);
@@ -25,6 +28,6 @@ app.use("/", routes);
 const apiRoutes = require("./routes/api");
 app.use("/api", apiRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening to ${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Server is listening to ${config.port}`);
 });
