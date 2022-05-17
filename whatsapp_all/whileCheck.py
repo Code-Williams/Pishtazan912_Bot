@@ -24,19 +24,25 @@ def check_db():
     cursor.execute(f"UPdATE settings SET value = 'Yes' WHERE name = 'av-checking'")
     mydb.commit()
 
-    cursor.execute("SELECT * FROM messages WHERE stats = 'pending'")
-    res = cursor.fetchall()
+    while True:
+        cursor.execute("SELECT * FROM messages WHERE stats = 'pending' LIMIT 1")
+        res = cursor.fetchall()
 
-    for x in res:
-        id, number, message, stats, activity_time = x
-        message_sent = utils.send_message(number, message, "2", driver)
-        print(message_sent)
-        if message_sent:
-            cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
-            mydb.commit()
-        else:
-            cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
-            mydb.commit()
+        cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
+        sleepTime = cursor.fetchall()[0][2]
+
+        if not res[0]:
+            break
+
+        for x in res:
+            id, number, message, stats, activity_time = x
+            message_sent = utils.send_message(number, message, sleepTime, driver)
+            if message_sent:
+                cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
+                mydb.commit()
+            else:
+                cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
+                mydb.commit()
 
     cursor.execute(f"UPDATE settings SET value = 'No' WHERE name = 'av-checking'")
     mydb.commit()
