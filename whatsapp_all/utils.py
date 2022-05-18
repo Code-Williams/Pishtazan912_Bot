@@ -17,13 +17,13 @@ def send_message(number, message, sleep_time, driver):
 
         time.sleep(float(sleep_time))
 
-        loop_count = 0
-        is_message_sent = True
+        is_message_sent = False
         try:
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
             chat_input.click()
             chat_input.send_keys(message)
             print(f"Message for [ {number} ] has been sent.")
+            is_message_sent = True
         except Exception as e:
             return 'not defined'
 
