@@ -12,7 +12,10 @@ if num.startswith("+98"):
 if num.startswith("0098"):
     num = num.replace("0098", "")
 
-lenghts = 10 - len(num)
+if num.startswith("9"):
+    num = "+98" + num
+
+lenghts = 13 - len(num)
 nums_for_loop = ""
 
 if (lenghts - 1) >= 1:
