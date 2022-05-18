@@ -1,6 +1,8 @@
 import webbrowser, pyautogui, time, os, datetime
+from colorama import Fore, init
 import pandas as pd
 
+init()
 
 def log(number, message):
     log_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -26,7 +28,6 @@ def send_message(number, message, sleep_time, driver):
         except Exception as e:
             is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
             if is_number_invalid.text == "Phone number shared via url is invalid.":
-                print("Phone numebr is invalid for " + Fore.RED + number + Fore.RESET)
                 return False
             return 'not defined'
 
@@ -38,7 +39,6 @@ def send_message(number, message, sleep_time, driver):
     except:
         is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
         if is_number_invalid.text == "Phone number shared via url is invalid.":
-            print("Phone numebr is invalid for " + Fore.RED + number + Fore.RESET)
             return False
         return 'cant send'
 

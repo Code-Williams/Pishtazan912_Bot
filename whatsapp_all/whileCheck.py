@@ -32,6 +32,7 @@ def check_db():
         cursor.execute("SELECT * FROM messages WHERE stats = 'pending' LIMIT 1")
         res = cursor.fetchall()
 
+
         if not res:
             break
 
@@ -47,6 +48,7 @@ def check_db():
             tryTime = cursor.fetchall()[0][2]
 
             id, number, message, stats, activity_time = res[0]
+            print("Start sending" + Fore.GREEN + number + Fore.RESET)
 
             try_time = 0
             message_sent = utils.send_message(number, message, sleepTime, driver)
@@ -72,6 +74,12 @@ def check_db():
                 print("Account for number " + Fore.RED + number + Fore.RESET + " is not loaded")
                 try_time += 1
                 time.sleep(30)
+
+            elif message_sent == False:
+                print("Account for number " + Fore.RED + number + Fore.RESET + " is invalid")
+                cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
+                mydb.commit()
+                break
 
     cursor.execute(f"UPDATE settings SET value = 'No' WHERE name = 'av-checking'")
     mydb.commit()
