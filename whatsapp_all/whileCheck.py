@@ -47,7 +47,7 @@ def check_db():
             try_time = 0
             message_sent = utils.send_message(number, message, sleepTime, driver)
 
-            if message_sent:
+            if message_sent == True:
                 cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
                 mydb.commit()
                 break
