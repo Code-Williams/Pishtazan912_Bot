@@ -55,13 +55,31 @@ def check_db():
 
             if message_sent == True:
                 print("Message sent for number "+ Fore.GREEN + number + Fore.RESET + " is true")
+                
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'sent done'")
+                sent_goal = int(cursor.fetchall()[0][2]) + 1
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'all done'")
+                all_goal = int(cursor.fetchall()[0][2]) + 1
+
                 cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
+                cursor.execute(f"UPDATE goals SET goal={sent_goal} WHERE name = 'sent done'")
+                cursor.execute(f"UPDATE goals SET goal={all_goal} WHERE name = 'all done'")
+
                 mydb.commit()
                 break
 
             elif try_time == int(tryTime):
                 print("Message sent for number " + Fore.RED + number + Fore.RESET + " is skipped")
+
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'sent done'")
+                sent_goal = int(cursor.fetchall()[0][2]) + 1
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'all done'")
+                all_goal = int(cursor.fetchall()[0][2]) + 1
+
                 cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
+                cursor.execute(f"UPDATE goals SET goal={sent_goal} WHERE name = 'sent done'")
+                cursor.execute(f"UPDATE goals SET goal={all_goal} WHERE name = 'all done'")
+
                 mydb.commit()
                 break
 
@@ -77,7 +95,16 @@ def check_db():
 
             elif message_sent == False:
                 print("Account for number " + Fore.RED + number + Fore.RESET + " is invalid")
+
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'sent done'")
+                sent_goal = int(cursor.fetchall()[0][2]) + 1
+                cursor.execute(f"SELECT * FROM goals WHERE name = 'all done'")
+                all_goal = int(cursor.fetchall()[0][2]) + 1
+                
                 cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
+                cursor.execute(f"UPDATE goals SET goal={sent_goal} WHERE name = 'sent done'")
+                cursor.execute(f"UPDATE goals SET goal={all_goal} WHERE name = 'all done'")
+
                 mydb.commit()
                 break
 

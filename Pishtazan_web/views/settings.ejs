@@ -65,7 +65,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Generate Range</h3>
+                  <h3 class="card-title">Message Settings</h3>
 
                   <% for(const key in flash){ %>
                           
@@ -77,7 +77,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="post" action="/settings">
+                <form method="post" action="/settings?slide=messages">
                   <div class="card-body">
                     <div class="form-group">
                         <label for="defaultMessage">Default Message</label>
@@ -103,6 +103,37 @@
                 </form>
               </div>
 
+
+
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Goal Settings</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post" action="/settings?slide=goal">
+                  <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="sentMessage">Sent Messages Goal</label>
+                        <input name="sentMessage" type="number" class="form-control" id="sentMessage" placeholder="Sleep Time" value="<%= goals.find(s => s.name == "sent messages").goal %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="allMessage">All Messages Goal</label>
+                        <input name="allMessage" type="number" class="form-control" id="allMessage" placeholder="Try Time" value="<%= goals.find(s => s.name == "all messages").goal %>">
+                    </div>
+
+                    <button type="submit" class="btn btn-danger" name="resetGoal">Reset Goal</button>
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
           </div>
           <!--/. container-fluid -->
         </section>
