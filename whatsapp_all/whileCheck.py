@@ -28,11 +28,14 @@ def check_db():
         cursor.execute("SELECT * FROM messages WHERE stats = 'pending' LIMIT 1")
         res = cursor.fetchall()
 
-        cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
-        sleepTime = cursor.fetchall()[0][2]
-
         if not res:
             break
+
+        cursor.execute(f"UPDATE messages SET stats = 'sending' WHERE id={res[0][0]}")
+        mydb.commit()
+
+        cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
+        sleepTime = cursor.fetchall()[0][2]
 
         for x in res:
             id, number, message, stats, activity_time = x
