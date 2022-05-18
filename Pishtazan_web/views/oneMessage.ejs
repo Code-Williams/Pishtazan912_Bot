@@ -86,6 +86,8 @@
                     <form action="/messages/<%= message.id %>/delete" method="post" class="float-right">
                       <button class="persian btn btn-sm btn-danger float-left" type="submit"">حذف از لیست</button>
                     </form>
+                <% }else if(message.stats == "sending"){ %>
+                    <p style="text-align: right; direction: rtl;" class="badge badge-warning persian">وضعیت : درحال ارسال</p>
                 <% }else if(message.stats == "skipped"){ %>
                     <p style="text-align: right; direction: rtl;" class="badge badge-danger persian">وضعیت : ارسال نشده</p>
                 <% } %>

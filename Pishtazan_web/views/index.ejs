@@ -228,6 +228,8 @@
                                     <span class="badge badge-warning">Pending</span>
                                 <% }else if(message.stats == "skipped"){ %>
                                     <span class="badge badge-danger">Skipped</span>
+                                <% } else if(message.stats == "sending"){ %>
+                                    <span class="badge badge-warning">Sending</span>
                                 <% }else{ %>
                                     <span class="badge badge-danger">None</span>
                                 <% } %>
