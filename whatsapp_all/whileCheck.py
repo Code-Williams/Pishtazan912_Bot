@@ -31,21 +31,39 @@ def check_db():
         if not res:
             break
 
-        cursor.execute(f"UPDATE messages SET stats = 'sending' WHERE id={res[0][0]}")
-        mydb.commit()
+        while True:
 
-        cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
-        sleepTime = cursor.fetchall()[0][2]
+            cursor.execute(f"UPDATE messages SET stats = 'sending' WHERE id={res[0][0]}")
+            mydb.commit()
 
-        for x in res:
-            id, number, message, stats, activity_time = x
+            cursor.execute("SELECT * FROM settings WHERE name = 'sleep time'")
+            sleepTime = cursor.fetchall()[0][2]
+
+            cursor.execute("SELECT * FROM settings WHERE name = 'try time'")
+            tryTime = cursor.fetchall()[0][2]
+
+            id, number, message, stats, activity_time = res[0]
+
+            try_time = 0
             message_sent = utils.send_message(number, message, sleepTime, driver)
+
             if message_sent:
                 cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
                 mydb.commit()
-            else:
+                break
+
+            elif try_time == int(tryTime):
                 cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
                 mydb.commit()
+                break
+
+            elif message_sent == 'not defined':
+                try_time += 1
+                time.sleep(5)
+
+            elif message_sent == 'cant send':
+                try_time += 1
+                time.sleep(30)
 
     cursor.execute(f"UPDATE settings SET value = 'No' WHERE name = 'av-checking'")
     mydb.commit()
