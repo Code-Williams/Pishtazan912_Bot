@@ -22,9 +22,12 @@ def send_message(number, message, sleep_time, driver):
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
             chat_input.click()
             chat_input.send_keys(message)
-            print(f"Message for [ {number} ] has been sent.")
             is_message_sent = True
         except Exception as e:
+            is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
+            if is_number_invalid.text == "Phone number shared via url is invalid.":
+                print("Phone numebr is invalid for " + Fore.RED + number + Fore.RESET)
+                return False
             return 'not defined'
 
         if is_message_sent:
@@ -33,6 +36,10 @@ def send_message(number, message, sleep_time, driver):
             time.sleep(1.5)
             return True
     except:
+        is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
+        if is_number_invalid.text == "Phone number shared via url is invalid.":
+            print("Phone numebr is invalid for " + Fore.RED + number + Fore.RESET)
+            return False
         return 'cant send'
 
 def read_excel_data(excel_file):

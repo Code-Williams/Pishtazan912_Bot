@@ -1,7 +1,10 @@
 import utils, sys, mysql.connector, time, config
+from colorama import Fore, init
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
+
+init()
 
 mydb = mysql.connector.connect(
     host = "localhost",
@@ -25,6 +28,7 @@ def check_db():
     mydb.commit()
 
     while True:
+        print("-"*30)
         cursor.execute("SELECT * FROM messages WHERE stats = 'pending' LIMIT 1")
         res = cursor.fetchall()
 
@@ -48,20 +52,24 @@ def check_db():
             message_sent = utils.send_message(number, message, sleepTime, driver)
 
             if message_sent == True:
+                print("Message sent for number "+ Fore.GREEN + number + Fore.RESET + " is true")
                 cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
                 mydb.commit()
                 break
 
             elif try_time == int(tryTime):
+                print("Message sent for number " + Fore.RED + number + Fore.RESET + " is skipped")
                 cursor.execute(f"UPDATE messages SET stats = 'skipped' WHERE id = {id}")
                 mydb.commit()
                 break
 
             elif message_sent == 'not defined':
+                print("Account for number " + Fore.RED + number + Fore.RESET + " is not defined")
                 try_time += 1
                 time.sleep(5)
 
             elif message_sent == 'cant send':
+                print("Account for number " + Fore.RED + number + Fore.RESET + " is not loaded")
                 try_time += 1
                 time.sleep(30)
 
