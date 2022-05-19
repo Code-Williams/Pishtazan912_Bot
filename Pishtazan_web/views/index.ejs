@@ -104,16 +104,16 @@
                         <div class="progress-group">
                           Sent messages
                           <span class="float-right"
-                            ><b><%= messages.filter(msg => msg.stats == "sent").length %></b>/<%= goals.find(goal => goal.name ==
+                            ><b><%= goals.find(goal => goal.name == "sent done").goal %></b>/<%= goals.find(goal => goal.name ==
                             "sent messages").goal %></span
                           >
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-primary"
-                              <% if(messages.filter(msg => msg.stats == "sent").length > goals.find(goal => goal.name == "sent messages").goal){ %>
+                              <% if(goals.find(goal => goal.name == "sent done").goal > goals.find(goal => goal.name == "sent messages").goal){ %>
                                 style="width: 100%;"
                               <% }else{ %>
-                                style="width: <%= parseInt(messages.filter(msg => msg.stats == "sent").length) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
+                                style="width: <%= parseInt(goals.filter(goal => goal.name == "sent done").goal) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
                               <% } %>
                             ></div>
                           </div>
@@ -122,14 +122,14 @@
 
                         <div class="progress-group">
                           All messages
-                          <span class="float-right"><b><%= messages.length %></b>/<%= goals.find(goal => goal.name == "all messages").goal %></span>
+                          <span class="float-right"><b><%= goals.find(goal => goal.name == "all done").goal %></b>/<%= goals.find(goal => goal.name == "all messages").goal %></span>
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-danger"
-                              <% if(messages.length > goals.find(goal => goal.name == "all messages").goal){ %>
+                              <% if(goals.find(goal => goal.name == "all done").goal > goals.find(goal => goal.name == "all messages").goal){ %>
                                 style="width: 100%;"
                               <% }else{ %>
-                                style="width: <%= messages.length / goals.find(goal => goal.name == "all messages").goal * 100%>%"
+                                style="width: <%= goals.find(goal => goal.name == "all done") / goals.find(goal => goal.name == "all messages").goal * 100%>%"
                               <% } %>
                             ></div>
                           </div>
