@@ -110,11 +110,7 @@
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-primary"
-                              <% if(goals.find(goal => goal.name == "sent done").goal > goals.find(goal => goal.name == "sent messages").goal){ %>
-                                style="width: 100%;"
-                              <% }else{ %>
-                                style="width: <%= parseInt(goals.filter(goal => goal.name == "sent done").goal) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
-                              <% } %>
+                              style="width: <%= parseInt(goals.find(goal => goal.name == "sent done").goal) / parseInt(goals.find(goal => goal.name == "sent messages").goal) * 100%>%"
                             ></div>
                           </div>
                         </div>
@@ -126,11 +122,7 @@
                           <div class="progress progress-sm">
                             <div
                               class="progress-bar bg-danger"
-                              <% if(goals.find(goal => goal.name == "all done").goal > goals.find(goal => goal.name == "all messages").goal){ %>
-                                style="width: 100%;"
-                              <% }else{ %>
-                                style="width: <%= goals.find(goal => goal.name == "all done") / goals.find(goal => goal.name == "all messages").goal * 100%>%"
-                              <% } %>
+                              style="width: <%= parseInt(goals.find(goal => goal.name == "all done").goal) / parseInt(goals.find(goal => goal.name == "all messages").goal) * 100%>%"
                             ></div>
                           </div>
                         </div>
