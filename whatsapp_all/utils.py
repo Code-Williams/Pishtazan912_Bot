@@ -1,4 +1,5 @@
 import webbrowser, pyautogui, time, os, datetime
+from selenium.common.exceptions import NoSuchElementException
 from colorama import Fore, init
 import pandas as pd
 
@@ -22,9 +23,12 @@ def send_message(number, message, sleep_time, driver):
         is_message_sent = False
         try:
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
-            chat_input.click()
-            chat_input.send_keys(message)
-            is_message_sent = True
+            if len(chat_input) > 0:
+                chat_input.click()
+                chat_input.send_keys(message)
+                is_message_sent = True
+            else:
+                return 'cant send'
         except Exception as e:
             is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
             if is_number_invalid.text == "Phone number shared via url is invalid.":
