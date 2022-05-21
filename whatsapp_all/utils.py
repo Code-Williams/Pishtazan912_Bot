@@ -1,4 +1,4 @@
-import webbrowser, pyautogui, time, os, datetime
+import webbrowser, pyautogui, os, datetime
 from selenium.common.exceptions import NoSuchElementException
 from colorama import Fore, init
 import pandas as pd
@@ -18,13 +18,13 @@ def send_message(number, message, sleep_time, driver):
     try:
         driver.get(f"https://web.whatsapp.com/send?phone={number}&source=&data=#")
 
-        time.sleep(float(sleep_time))
+        driver.implicitly_wait(float(sleep_time))
 
         is_message_sent = False
         try:
             chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
             if chat_input:
-                chat_input.click()
+                #chat_input.click()
                 chat_input.send_keys(message)
                 is_message_sent = True
             else:
@@ -36,9 +36,9 @@ def send_message(number, message, sleep_time, driver):
             return 'not defined'
 
         if is_message_sent:
-            time.sleep(0.2)
+            driver.implicitly_wait(0.2)
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
-            time.sleep(1.5)
+            driver.implicitly_wait(1.5)
             return True
     except:
         is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
