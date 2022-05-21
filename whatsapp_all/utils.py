@@ -38,6 +38,9 @@ def send_message(number, message, sleep_time, driver):
         if is_message_sent:
             driver.implicitly_wait(0.2)
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
+            driver.implicitly_wait(0.5)
+            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
+            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button").send_keys("C:\\Users\\Pictures\\ranges.pdf")
             driver.implicitly_wait(1.5)
             return True
     except:
