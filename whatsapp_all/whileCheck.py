@@ -47,11 +47,17 @@ def check_db():
             cursor.execute("SELECT * FROM settings WHERE name = 'try time'")
             tryTime = cursor.fetchall()[0][2]
 
+            cursor.execute("SELECT * FROM settings WHERE name = 'img'")
+            img_path = cursor.fetchall()[0][2]
+
+            cursor.execute("SELECT * FROM settings WHERE name = 'pdf'")
+            pdf_path = cursor.fetchall()[0][2]
+
             id, number, message, stats, activity_time = res[0]
             print("Start sending" + Fore.GREEN + number + Fore.RESET)
 
             try_time = 0
-            message_sent = utils.send_message(number, message, sleepTime, driver)
+            message_sent = utils.send_message(number, message, sleepTime, img_path, pdf_path, driver)
 
             if message_sent == True:
                 print("Message sent for number "+ Fore.GREEN + number + Fore.RESET + " is true")

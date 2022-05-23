@@ -13,7 +13,7 @@ def log(number, message):
     log_file.close()
 
 
-def send_message(number, message, sleep_time, driver):
+def send_message(number, message, sleep_time, img_path, pdf_path, driver):
     trying_send = 0
     try:
         driver.get(f"https://web.whatsapp.com/send?phone={number}&source=&data=#")
@@ -41,13 +41,13 @@ def send_message(number, message, sleep_time, driver):
             time.sleep(0.5)
             # finding and sending pdf file
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input").send_keys("C:\\Users\\Administrator\\Pictures\\ranges.pdf")
+            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{pdf_path}")
             time.sleep(2)
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
 
             # finding and sending picture
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/input").send_keys("C:\\Users\\Administrator\\Pictures\\pic.png")
+            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{img_path}")
             time.sleep(2)
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
 
