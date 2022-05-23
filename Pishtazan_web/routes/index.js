@@ -12,6 +12,7 @@ Router.post("/range", generateRangeController.post);
 const settingsController = require("../controller/settingsController")
 Router.get("/settings", settingsController.get)
 Router.post("/settings", settingsController.post)
+Router.post("/settings/files", upload.single("file"), settingsController.postFile)
 // const messagesRouter = require("./messagesRoute");
 // Router.use("/messages/log" , messagesRouter);
 

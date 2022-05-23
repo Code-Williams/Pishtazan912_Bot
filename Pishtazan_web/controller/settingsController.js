@@ -11,7 +11,6 @@ const get = async (req, res) => {
 }
 
 const post = async (req, res) => {
-    console.log(req.body)
     if(req.query.slide && req.query.slide == "messages"){
         await subController_message(req, res)
     }else if(req.query.slide && req.query.slide == "goal"){
@@ -22,4 +21,34 @@ const post = async (req, res) => {
     res.redirect("/settings")
 }
 
-module.exports = {get, post}
+const postFile = async (req, res) => {
+    const file = req.file
+    console.log(1)
+    
+    if(file && !file.filename.endsWith(".pdf")){
+        const settings = await Setting.findOne({
+            where : {
+                name : "img"
+            }
+        });
+
+        settings.update({
+            value : file.filename
+        })
+    }else if (file){
+        const settings = await Setting.findOne({
+            where : {
+                name : "pdf"
+            }
+        })
+
+        settings.update({
+            value : file.filename
+        })
+    }
+
+    req.flash("success", "Settings Updated Successfully")
+    res.redirect("/settings")
+}
+
+module.exports = {get, post, postFile}
