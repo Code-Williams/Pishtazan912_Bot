@@ -40,18 +40,20 @@ def send_message(number, message, sleep_time, img_path, pdf_path, driver):
             driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button").click()
             time.sleep(1)
             # finding and sending pdf file
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
-            time.sleep(1)
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{pdf_path}")
-            time.sleep(2)
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
+            if pdf_path and not pdf_path == "":
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
+                time.sleep(1)
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{pdf_path}")
+                time.sleep(2)
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
 
             # finding and sending picture
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
-            time.sleep(1)
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{img_path}")
-            time.sleep(2)
-            driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
+            if img_path and not img_path == "":
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]").click()
+                time.sleep(1)
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{img_path}")
+                time.sleep(2)
+                driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]").click()
 
             time.sleep(2)
             return True
