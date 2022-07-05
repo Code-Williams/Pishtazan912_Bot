@@ -31,7 +31,7 @@ def send_message(number, message, sleep_time, img_path, pdf_path, driver):
                 return 'cant send'
         except Exception as e:
             is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
-            if is_number_invalid.text == "Phone number shared via url is invalid.":
+            if is_number_invalid and is_number_invalid.text == "Phone number shared via url is invalid.":
                 return False
             return 'not defined'
 
