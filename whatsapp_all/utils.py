@@ -22,9 +22,9 @@ def send_message(number, message, sleep_time, img_path, pdf_path, driver):
 
         is_message_sent = False
         try:
-            chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]")
+            chat_input = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]")
             if chat_input:
-                #chat_input.click()
+                chat_input.click()
                 chat_input.send_keys(message)
                 is_message_sent = True
             else:
