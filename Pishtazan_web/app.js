@@ -31,16 +31,16 @@ app.use("/api", apiRoutes);
 
 console.log("Starting server...")
 
-axios.post(`${config.supportedDomain}/api/v1/access_run_server`, {
-  project_name : "pishtazan",
-  password : "1030pishtazan912"
-}).then(res => {
-  if(res.data.success && !res.data.isDeActive){
+// axios.post(`${config.supportedDomain}/api/v1/access_run_server`, {
+//   project_name : "pishtazan",
+//   password : "1030pishtazan912"
+// }).then(res => {
+//   if(res.data.success && !res.data.isDeActive){
     app.listen(config.port, () => {
       console.log(`Server is listening to ${config.port}`);
     });
-  }else{
-    throw new Error("Server is deactive. please contact with Shayan NasrAbadi [Developer].\n+989103438399")
-  }
-})
+//   }else{
+//     throw new Error("Server is deactive. please contact with Shayan NasrAbadi [Developer].\n+989103438399")
+//   }
+// })
 
