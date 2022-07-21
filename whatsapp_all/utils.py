@@ -30,13 +30,14 @@ def send_message(number, message, sleep_time, img_path, pdf_path, driver):
             else:
                 return 'cant send'
         except Exception as e:
-            try:
-                is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
-                if is_number_invalid and is_number_invalid.text == "Phone number shared via url is invalid.":
-                    return False
-                return 'not defined'
-            except:
-                return 'not defined'
+            # try:
+            #     is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
+            #     if is_number_invalid and is_number_invalid.text == "Phone number shared via url is invalid.":
+            #         return False
+            #     return 'not defined'
+            # except:
+            #     return 'not defined'
+            return False
 
         if is_message_sent:
             time.sleep(0.2)
@@ -62,13 +63,14 @@ def send_message(number, message, sleep_time, img_path, pdf_path, driver):
             return True
     except Exception as e:
         print(e)
-        try:
-            is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
-            if is_number_invalid.text == "Phone number shared via url is invalid.":
-                return False
-            return 'cant send'
-        except:
-            return 'cant send'
+        # try:
+        #     is_number_invalid = driver.find_element_by_xpath("/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div[1]")
+        #     if is_number_invalid.text == "Phone number shared via url is invalid.":
+        #         return False
+        #     return 'cant send'
+        # except:
+        #     return 'cant send'
+        return False
 
 def read_excel_data(excel_file):
     file_e = pd.read_excel(excel_file, index_col=None, header=None)
