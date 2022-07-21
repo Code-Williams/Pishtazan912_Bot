@@ -47,11 +47,13 @@ def check_db():
             cursor.execute("SELECT * FROM settings WHERE name = 'try time'")
             tryTime = cursor.fetchall()[0][2]
 
-            cursor.execute("SELECT * FROM settings WHERE name = 'img'")
-            img_path = cursor.fetchall()[0][2]
+            # cursor.execute("SELECT * FROM settings WHERE name = 'img'")
+            # img_path = cursor.fetchall()[0][2]
+            img_path = ""
 
-            cursor.execute("SELECT * FROM settings WHERE name = 'pdf'")
-            pdf_path = cursor.fetchall()[0][2]
+            # cursor.execute("SELECT * FROM settings WHERE name = 'pdf'")
+            # pdf_path = cursor.fetchall()[0][2]
+            pdf_path = ""
 
             id, number, message, stats, activity_time = res[0]
             print("Start sending" + Fore.GREEN + number + Fore.RESET)
