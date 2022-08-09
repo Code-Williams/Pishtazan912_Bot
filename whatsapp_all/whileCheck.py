@@ -36,7 +36,10 @@ def check_db():
             cursor.execute("SELECT * FROM settings WHERE name = 'try time'")
             tryTime = cursor.fetchall()[0][2]
 
-            id, number, message, stats, activity_time = res[0]
+            cursor.execute("SELECT * FROM settings WHERE name = 'message'")
+            message = cursor.fetchall()[0][2]
+
+            id, number, message2, stats, activity_time = res[0]
 
             print(f"Start sending {number}")
 
