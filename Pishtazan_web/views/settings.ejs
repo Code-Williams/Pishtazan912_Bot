@@ -52,128 +52,138 @@
         <!-- Main content -->
         <section class="content" style="margin-top: 70px">
           <div class="container-fluid">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Message Settings</h3>
+
+                <% for(const key in flash){ %>
+
+                <span role="alert" class="flash"> <%= flash[key] %> </span>
+
+                <% } %>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="/settings?slide=messages">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="defaultMessage">Default Message</label>
+                    <textarea
+                      name="message"
+                      type="text"
+                      class="form-control persian"
+                      style="text-align: right; direction: rtl"
+                      id="defaultMessage"
+                    >
+<%= settings.find(s => s.name == "message").value %></textarea
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label for="sleepTime">Sleep Time</label>
+                    <input name="sleepTime" type="text" class="form-control"
+                    id="sleepTime" placeholder="Sleep Time" value="<%=
+                    settings.find(s => s.name == "sleep time").value %>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="tryTime">Try Time</label>
+                    <input name="tryTime" type="text" class="form-control"
+                    id="tryTime" placeholder="Try Time" value="<%=
+                    settings.find(s => s.name == "try time").value %>">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
 
             <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Message Settings</h3>
-
-                  <% for(const key in flash){ %>
-                          
-                    <span role="alert" class="flash">
-                      <%= flash[key] %>
-                    </span>
-        
-                  <% } %>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form method="post" action="/settings?slide=messages">
-                  <div class="card-body">
-                    <div class="form-group">
-                        <label for="defaultMessage">Default Message</label>
-                        <textarea name="message" type="text" class="form-control persian" style="text-align: right; direction: rtl;" id="defaultMessage"><%= settings.find(s => s.name == "message").value %></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="sleepTime">Sleep Time</label>
-                        <input name="sleepTime" type="text" class="form-control" id="sleepTime" placeholder="Sleep Time" value="<%= settings.find(s => s.name == "sleep time").value %>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tryTime">Try Time</label>
-                        <input name="tryTime" type="text" class="form-control" id="tryTime" placeholder="Try Time" value="<%= settings.find(s => s.name == "try time").value %>">
-                    </div>
-
-                  </div>
-                  <!-- /.card-body -->
-  
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                  </div>
-                </form>
+              <div class="card-header">
+                <h3 class="card-title">Goal Settings</h3>
               </div>
-
-
-
-              <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Goal Settings</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form method="post" action="/settings?slide=goal">
-                  <div class="card-body">
-
-                    <div class="form-group">
-                        <label for="sentMessage">Sent Messages Goal</label>
-                        <input name="sentMessage" type="number" class="form-control" id="sentMessage" placeholder="Sleep Time" value="<%= goals.find(s => s.name == "sent messages").goal %>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="allMessage">All Messages Goal</label>
-                        <input name="allMessage" type="number" class="form-control" id="allMessage" placeholder="Try Time" value="<%= goals.find(s => s.name == "all messages").goal %>">
-                    </div>
-
-                    <button type="submit" class="btn btn-danger" name="resetGoal">Reset Goal</button>
-
-                  </div>
-                  <!-- /.card-body -->
-  
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                  </div>
-                </form>
-              </div>
-
-
-
-              <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Send Message </h3>
-
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="/settings?slide=goal">
                 <div class="card-body">
-                  
-                  <div class="form-group" style="width: 49%; float: left;">
-                    <label for="exampleInputFile" style="width: 100%; margin-top: 10px;">PDF input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                          <form method="post" action="/settings/files" enctype="multipart/form-data">
-                            <input type="file" name="file" class="custom-file-input" id="exampleInputFile" accept=".pdf">
-                            <label class="custom-file-label" for="exampleInputFile" >Choose file</label>
-                            <button type="submit" class="btn btn-primary" style="margin-top: 50px;">Save</button>
-                          </form>
-
-                        </div>
-                        <!-- <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div> -->
-                      </div>
-                    </div>
-
-                    <div class="form-group" style="width: 49%; float: right;">
-                      <label for="exampleInputFile2" style="width: 100%; margin-top: 10px;">IMG input</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <form action="/settings/files" method="post" enctype="multipart/form-data">
-                            <input type="file" name="file" class="custom-file-input" id="exampleInputFile2" accept=".png, .jpg, .jpeg">
-                            <label class="custom-file-label" for="exampleInputFile2">Choose file</label>
-                            <button type="submit" class="btn btn-primary" style="margin-top: 50px;">Save</button>
-                          </form>
-                        </div>
-                        <!-- <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div> -->
-                      </div>
-                    </div>
+                  <div class="form-group">
+                    <label for="sentMessage">Sent Messages Goal</label>
+                    <input name="sentMessage" type="number" class="form-control"
+                    id="sentMessage" placeholder="Sleep Time" value="<%=
+                    goals.find(s => s.name == "sent messages").goal %>">
                   </div>
-                  <!-- /.card-body -->
-  
-                  <div class="card-footer">
+
+                  <div class="form-group">
+                    <label for="allMessage">All Messages Goal</label>
+                    <input name="allMessage" type="number" class="form-control"
+                    id="allMessage" placeholder="Try Time" value="<%=
+                    goals.find(s => s.name == "all messages").goal %>">
                   </div>
+
+                  <button type="submit" class="btn btn-danger" name="resetGoal">
+                    Reset Goal
+                  </button>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Send Message</h3>
               </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <div class="card-body">
+                <div class="form-group" style="width: 49%; float: left">
+                  <label
+                    for="exampleInputFile"
+                    style="width: 100%; margin-top: 10px"
+                    >PDF input</label
+                  >
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <form
+                        method="post"
+                        action="/settings/files"
+                        enctype="multipart/form-data"
+                      >
+                        <input
+                          type="file"
+                          name="file"
+                          class="custom-file-input"
+                          id="exampleInputFile"
+                          accept=".pdf"
+                        />
+                        <label class="custom-file-label" for="exampleInputFile"
+                          >Choose file</label
+                        >
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          style="margin-top: 50px"
+                        >
+                          Save
+                        </button>
+                      </form>
+                    </div>
+                    <!-- <div class="input-group-append">
+                          <span class="input-group-text">Upload</span>
+                        </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer"></div>
+            </div>
           </div>
           <!--/. container-fluid -->
         </section>
