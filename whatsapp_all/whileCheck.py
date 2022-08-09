@@ -39,11 +39,15 @@ def check_db():
             cursor.execute("SELECT * FROM settings WHERE name = 'message'")
             message = cursor.fetchall()[0][2]
 
+            cursor.exeucte("SELECT * FROM settings WHERE name = 'pdf'")
+            file_path = cursor.fetchall()[0][2]
+
             id, number, message2, stats, activity_time = res[0]
 
             print(f"Start sending {number}")
 
             message_sent = utils.send_message(number, message, sleepTime, driver)
+            pdf_sent = utils.send_file(driver, file_path)
 
             if message_sent == True:
                 print(f"+ Message sent for number [ {number} ]")
@@ -57,6 +61,11 @@ def check_db():
                 cursor.execute(f"UPDATE messages SET stats = 'sent' WHERE id = {id}")
                 cursor.execute(f"UPDATE goals SET goal={sent_goal} WHERE name = 'sent done'")
                 cursor.execute(f"UPDATE goals SET goal={all_goal} WHERE name = 'all done'")
+
+                if pdf_sent == True:
+                    print("PDF For this number has been sent")
+                else:
+                    print("PDF for this number not sent")
 
                 mydb.commit()
                 break

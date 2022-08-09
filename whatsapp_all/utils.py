@@ -6,6 +6,13 @@ def start_setup(driver):
     driver.get("https://web.whatsapp.com")
     input("Scan QR then enter to start.")
 
+def send_file(driver, file_path):
+    try:
+        driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input").send_keys(f"C:\\Users\\Administrator\\Desktop\\Pishtazan912_Bot\\Pishtazan_web\\public\\uploads\\{file_path}")
+        return True
+    except:
+        return False
+
 def send_message(number, message, sleep_time, driver):
     trying_send = 0
     try:
