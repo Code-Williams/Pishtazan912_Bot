@@ -12,7 +12,8 @@ link = "https://my.uupload.ir/dl/aGk0e027"
 numbers_log = {}
 
 for number in numbers:
-    if(number.endswith(".jpg")):
+    if not number.endswith(".txt") and number.startswith("09"):
+        print(f"Starting number {number}")
         file_name = number
         number = utils.check_number(number.split(".")[0], driver)
         if number : 
